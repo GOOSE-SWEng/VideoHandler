@@ -1,33 +1,29 @@
 package handlers;
 
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.SubScene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.util.Duration;
+
 
 public class VideoHandler {
 	
-	private List<MediaView> videoList = new ArrayList();
+	static MediaPlayer mp;
+	//private List<MediaView> videoList = new ArrayList();
 	private List<SubScene> vidlist = new ArrayList();
 	
 	public VideoHandler(NodeList videoNList) throws InterruptedException, IOException {
@@ -47,56 +43,56 @@ public class VideoHandler {
 			Media media = new Media(tempFile.toURI().toString());//Create a media file using the temp file URI
 		
 			//Create media player
-			MediaPlayer mp = new MediaPlayer(media); //Create a media Player
+			mp = new MediaPlayer(media); //Create a media Player
 			//Set the video to auto play
-			mp.setAutoPlay(true);
+			//mp.setAutoPlay(true);
+			
 			//set to loop
-			mp.setCycleCount(MediaPlayer.INDEFINITE);
+			if(loop) {
+				mp.setCycleCount(MediaPlayer.INDEFINITE);
+			}
 			
 			
+			//Introduces the delay
+			ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+			Runnable playDelay1 = () -> mp.play();
+			executorService.schedule(playDelay1, 5, TimeUnit.SECONDS);
 			
-			//MediaView mv = new MediaView(mp);//Create a media view
-			
-			
-			//Set the size of the media player(not resisable)
-			mv.setFitHeight(600);
-			mv.setFitWidth(360);
 			
 			//Loads the media player layout from a fxml file
-			AnchorPane root = FXMLLoader.load(getClass().getClassLoader().getResource("videoPlayer.fxml"));
-			((MediaView) root.getChildren().get(0)).setMediaPlayer(mp);
+			BorderPane root = FXMLLoader.load(getClass().getClassLoader().getResource("videoPlayer.fxml"));
 			
-			MediaView mv = (MediaView) root.getChildren().get(0);
+			MediaView mv = (MediaView) root.getCenter();
+			mv.setMediaPlayer(mp);
+			
+			//works...
 			//MediaView mv = new MediaView(mp);
-			//DoubleProperty widthMV =  mv.fitWidthProperty();
-			//DoubleProperty heightMV = mv.fitHeightProperty();
-			//widthMV.bind(Bindings.selectDouble(mv.sceneProperty(), "width"));
-			//heightMV.bind(Bindings.selectDouble(mv.sceneProperty(), "height"));
-
+			//mv.setFitHeight(350);
+			//mv.setFitWidth(600);
+			//root.setCenter(mv);
+			
+			
 			
 			//Setting start playing delay
-			//Duration delay = new Duration(100000);
-			//mp.setStartTime(delay);
 			
 			
-			//newPane.getChildren().add(mv);
-			//Create a subscene
+
+			//Create a sub scene
 			SubScene videoScene = new SubScene(root, 600 , 400);
 			
 			//Set the position
 			videoScene.setLayoutX(xPosition);
 			videoScene.setLayoutY(yPosition);
-
-			
 			
 			vidlist.add(videoScene);
-			//videoList.add(mv); //Add the media view to the list
+
 		}
 	}
-	//Gets the media view list
-	public List<MediaView> getMediaList(){
-		return videoList;
+	
+	public static void delayPlay() {
+		mp.play();
 	}
+	
 	
 	public List<SubScene> getSceneList(){
 		return vidlist;

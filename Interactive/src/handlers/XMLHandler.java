@@ -41,7 +41,7 @@ public class XMLHandler {
         for(int i = 0; i < slideList.getLength(); i++) {
         	
         	//Separate all the nodes into respective media:
-
+        	
         	//Video handling:
             //Video node list store all info tagged within "video" tag
         	Element slideElement = (Element) slideList.item(i);//Need to make it an element so i could use get tags
@@ -55,11 +55,12 @@ public class XMLHandler {
             	// slidePane = new Slide(videoHandler.getMediaList()).getSlide();
             	 slidePane = new Slide(videoHandler.getSceneList()).getSlide();
             } else {//If the slide contains no videos print out the message
+            	
             }
         }
 	}
 	
-	//Returns the slide to the controller class to be displyed
+	//Returns the slide to the controller class to be displayed
 	public Pane getSlide() {
 		return slidePane;
 	}
