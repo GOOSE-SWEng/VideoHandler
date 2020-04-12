@@ -10,22 +10,23 @@ public class VideoLayer {
 	int height;
 	int width;
 	StackPane sp = new StackPane();
-	Canvas canvas = new Canvas(width,height);
-	ArrayList<Video> video = new ArrayList<Video>();
+	ArrayList<Video> videos = new ArrayList<Video>();
 	SubScene window = new SubScene(sp,width,height);
 	
 	public VideoLayer(int width,int height){
 		this.height = height;
 		this.width = width;
-		sp.getChildren().add(canvas);
+		sp.setMinSize(width,height);
 	}
 	
-	public void add() {
-		//constructor for the audio object
+	public void add(String urlName, int startTime, Boolean loop, int xStart, int yStart) {
+		Video video = new Video( urlName, startTime, loop, xStart, yStart, width, height);//creates te video object and its subscene
+		videos.add(video);// adds the video object to the array list
+		sp.getChildren().add(video.get());// adds the SubScene(created with the constructor) to the video layer stack pane
 	}
 	
-	public void remove(Video object) {
-		sp.getChildren().remove(object);
+	public void remove(Video video) {
+		sp.getChildren().remove(video.get());
 	}
 	
 	public SubScene get() {
