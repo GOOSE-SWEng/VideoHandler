@@ -76,7 +76,7 @@
 		<video>
 			<urlname>src/video/Sun.mp4</urlname>
 			<starttime>0</starttime>
-			<loop>false</loop>
+			<loop>true</loop>
 			<xstart>200</xstart>
 			<ystart>100</ystart>
 		</video>

@@ -23,6 +23,6 @@
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" text="X" />
         </items>
       </ToolBar>
-      <Pane fx:id="slidePane" layoutX="-1.0" layoutY="39.0" prefHeight="561.0" prefWidth="1295.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+      <Pane fx:id="slidePane" layoutY="40.0" prefHeight="561.0" prefWidth="1295.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>

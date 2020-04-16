@@ -17,7 +17,7 @@ public class Slide {
 	//private double slideY = 40;
 	
 	public Slide(List<SubScene> list) {
-
+		
 		//add all the media view into a pane
 		for(int i = 0; i < list.size(); i++) {
 			slide.getChildren().add(list.get(i));

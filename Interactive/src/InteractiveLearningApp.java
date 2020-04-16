@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 
 public class InteractiveLearningApp extends Application{
 	
+	
 	public static void main(String[] args) {
 		System.out.println("Running...");
 		launch(args);
@@ -28,5 +29,9 @@ public class InteractiveLearningApp extends Application{
 		primaryStage.setScene(scene);
 		
 		primaryStage.show();	
+		
+		Stage newStage = (Stage) scene.getWindow();
+		newStage.show();
+		
 	}
 }

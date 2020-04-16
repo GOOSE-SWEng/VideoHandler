@@ -75,7 +75,7 @@
 		</image>
 		<video>
 			<urlname>src/video/Mahalia-Jackson-Joshua-Fit-The-Battle-Of-Jericho.mp4</urlname>
-			<starttime>0</starttime>
+			<starttime>1</starttime>
 			<loop>false</loop>
 			<xstart>200</xstart>
 			<ystart>100</ystart>

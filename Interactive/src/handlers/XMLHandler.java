@@ -20,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaView;
 import slide.Slide;
 
+
 public class XMLHandler {
 	
 	private Pane slidePane; //Pane of a single slide (make into a list when get to making more than one slide)
